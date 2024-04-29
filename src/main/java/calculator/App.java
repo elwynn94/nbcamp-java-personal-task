@@ -8,8 +8,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] results = new int[10]; // 결과를 저장할 배열
-        int count = 0; // 결과 배열의 현재 인덱스
+        Queue<String> results = new LinkedList<>();
 
         while (true) {
             System.out.print("첫 번째 숫자를 입력하세요: ");
@@ -31,9 +30,10 @@ public class App {
                 } else if (c == '/') {
                     result = a / b;
                 }
-
-                results[count % 10] = result; // 결과를 배열에 저장 (최대 10개까지 저장)
-                count++; // index를 증가시킨다.
+                results.add(String.valueOf(result));
+                if (results.size() > 10) {
+                    results.poll();
+                }
 
                 System.out.println("결과 : " + result);
 
@@ -41,7 +41,6 @@ public class App {
                 System.out.println("사칙연산 기호만 넣어주세요. (+, -, *, /)");
                 continue;
             }
-
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             String more = sc.next();
