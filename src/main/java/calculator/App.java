@@ -59,8 +59,8 @@ public class App {
             }
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
-            String more = sc.next();
-            if (Objects.equals(more, "exit")) {
+            String moreCalculate = sc.next();
+            if (Objects.equals(moreCalculate, "exit")) {
                 System.out.println("프로그램을 종료합니다.");
                 break;
             }
