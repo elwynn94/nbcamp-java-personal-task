@@ -15,7 +15,6 @@ public class Calculator {
     public int calculate(int a, int b, char c) {
         int result = 0; // 연산 결과를 저장할 변수 result 생성
 
-            if (c == '+' || c == '-' || c == '*' || c == '/') {
                 if (c == '+') {
                     result = a + b;
                 } else if (c == '-') {
@@ -28,14 +27,14 @@ public class Calculator {
                     } else {
                         result = a / b;
                     }
+                } else {
+                        throw new UnsupportedOperationException("사칙연산 기호만 넣어주세요. (+, -, *, /)");
+                    }
 
                     System.out.println("결과 : " + result);
                     results.add(result); // 결과값을 results Queue에 추가
-                }
-            } else {
-                throw new UnsupportedOperationException("사칙연산 기호만 넣어주세요. (+, -, *, /)");
-            }
-        return result;
+
+                    return result;
     }
 
     public Queue<Integer> getResults() {
