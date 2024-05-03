@@ -1,6 +1,5 @@
 package calculator;
 
-import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -32,6 +31,8 @@ public class App {
                 try {
                     double result = arithmeticCalculator.calculate(a, b, c);
                     System.out.println("결과 : " + result);
+                    System.out.println("저장된 연산 결과 중 입력값보다 큰 결과:");
+                    arithmeticCalculator.getResultsGreaterThanInput(result).forEach(System.out::println);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     // 예외 후 처리

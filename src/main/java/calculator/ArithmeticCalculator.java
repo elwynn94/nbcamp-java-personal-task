@@ -1,5 +1,7 @@
 package calculator;
 
+import java.util.List;
+
 public class ArithmeticCalculator extends Calculator {
 
     private final AddOperator addOperator;
@@ -8,6 +10,13 @@ public class ArithmeticCalculator extends Calculator {
     private final DivideOperator divideOperator;
     private final ModOperator modOperator;
 
+    public List<Double> getResultsGreaterThanInput(double inputValue) {
+        // 입력값보다 큰 결과들을 필터링하여 반환
+        return getCalculationResults().stream()
+                .filter(result -> result > inputValue)
+                .toList();
+    }
+
     public ArithmeticCalculator(AddOperator addOperator, SubtractOperator subtractOperator, MultiplyOperator multiplyOperator,
                                 DivideOperator divideOperator, ModOperator modOperator) {
         super();
@@ -15,7 +24,7 @@ public class ArithmeticCalculator extends Calculator {
         this.subtractOperator = subtractOperator;
         this.multiplyOperator = multiplyOperator;
         this.divideOperator = divideOperator;
-        this.modOperator = new ModOperator();
+        this.modOperator = modOperator;
     }
 
     @Override
