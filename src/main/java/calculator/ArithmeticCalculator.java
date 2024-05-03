@@ -29,24 +29,24 @@ public class ArithmeticCalculator extends Calculator {
     }
 
     public double calculate(double a, double b, char c) {
-        double result = 0;
+        OperatorType operator = switch (c) {
+            case '+' -> OperatorType.ADDITION;
+            case '-' -> OperatorType.SUBTRACTION;
+            case '*' -> OperatorType.MULTIPLICATION;
+            case '/' -> OperatorType.DIVISION;
+            case '%' -> OperatorType.MODULUS;
+            default -> throw new UnsupportedOperationException("사칙연산과 나머지(%) 기호만 넣어주세요. (+, -, *, /, %)");
+        };
 
-        if (c == '+') {
-            result = addOperator.operate(a, b);
-        } else if (c == '-') {
-            result = subtractOperator.operate(a, b);
-        } else if (c == '*') {
-            result = multiplyOperator.operate(a, b);
-        } else if (c == '/') {
-            result = divideOperator.operate(a, b);
-        } else if (c == '%') {
-            result = modOperator.operate(a, b);
-        } else {
-            throw new UnsupportedOperationException("사칙연산 기호만 넣어주세요. (+, -, *, /)");
-        }
+        double result = switch (operator) {
+            case ADDITION -> addOperator.operate(a, b);
+            case SUBTRACTION -> subtractOperator.operate(a, b);
+            case MULTIPLICATION -> multiplyOperator.operate(a, b);
+            case DIVISION -> divideOperator.operate(a, b);
+            case MODULUS -> modOperator.operate(a, b);
+        };
 
-        calculationResults.add(result);
-
+        addResult(result); // 계산 결과를 추가
         return result;
     }
 }

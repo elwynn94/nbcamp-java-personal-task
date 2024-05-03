@@ -21,4 +21,8 @@ public class Calculator {
     public void inquiryResults() {
         System.out.println("연산 결과 : " + calculationResults);
     }
+
+    protected void addResult(double result) {
+        calculationResults.add(result);
+    }
 }
