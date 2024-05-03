@@ -1,8 +1,21 @@
 package calculator;
 
 public class ArithmeticCalculator extends Calculator {
-    public ArithmeticCalculator() {
+
+    private final AddOperator addOperator;
+    private final SubtractOperator subtractOperator;
+    private final MultiplyOperator multiplyOperator;
+    private final DivideOperator divideOperator;
+    private final ModOperator modOperator;
+
+    public ArithmeticCalculator(AddOperator addOperator, SubtractOperator subtractOperator, MultiplyOperator multiplyOperator,
+                                DivideOperator divideOperator, ModOperator modOperator) {
         super();
+        this.addOperator = addOperator;
+        this.subtractOperator = subtractOperator;
+        this.multiplyOperator = multiplyOperator;
+        this.divideOperator = divideOperator;
+        this.modOperator = new ModOperator();
     }
 
     @Override
@@ -19,22 +32,19 @@ public class ArithmeticCalculator extends Calculator {
         double result = 0;
 
         if (c == '+') {
-            result = a + b;
+            result = addOperator.operate(a, b);
         } else if (c == '-') {
-            result = a - b;
+            result = subtractOperator.operate(a, b);
         } else if (c == '*') {
-            result = a * b;
+            result = multiplyOperator.operate(a, b);
         } else if (c == '/') {
-            if (b == 0) {
-                throw new ArithmeticException("나눗셈 연산에서 분모가 0이 입력될 수 없습니다.");
-            } else {
-                result = a / b;
-            }
+            result = divideOperator.operate(a, b);
+        } else if (c == '%') {
+            result = modOperator.operate(a, b);
         } else {
             throw new UnsupportedOperationException("사칙연산 기호만 넣어주세요. (+, -, *, /)");
         }
 
-        System.out.println("결과 : " + result);
         calculationResults.add(result);
 
         return result;

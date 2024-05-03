@@ -1,12 +1,20 @@
 package calculator;
 
+import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator(
+                new AddOperator(),
+                new SubtractOperator(),
+                new MultiplyOperator(),
+                new DivideOperator(),
+                new ModOperator()
+        );
+
         CircleCalculator circleCalculator = new CircleCalculator();
 
         while (true) {
